@@ -1,92 +1,159 @@
-//Create a repo with example code (unit 0) Javascript
-
+// ===============================================
 // 1. Values, Data Types, and Operations
-
+// ===============================================
 // Pseudocode:
-// 1. Store student name (as string) and quiz score, passing score (as numbers).
-// 2. Use console.log to display result.
+// 1. Store multiple student names (as strings) and quiz scores, passing score (as numbers).
+// 2. Use console.log to display results.
 
-let studentName = "XYZ"; // string datatype
-let quizScore = 95; // number datatype
-let passingScore = 70; // number datatype
-console.log("Quiz Score: " + quizScore); // operation combining number + string
+let passingScore = 70; // number datatype for all students
 
+let students = [
+  { name: "Robert", quizScore: 95 },
+  { name: "Aisha", quizScore: 82 },
+  { name: "Shine", quizScore: 65 }
+];
 
-
-// 2. Stringing Characters Together  // Use template literal to create a progress update
-
-// Step 1: Set a variable for the number of homework assignments completed.  
-// Step 2: Set a variable for the total homework assignments assigned.  
-// Step 3: Use a template literal to build a string that combines:  
-//         - the student's name,  
-//         - the number of homework assignments completed, and  
-//         - the total number of homework assignments.  
-// Step 4: Save this combined string into a variable called homeworkMessage.  
-// Step 5: Use console.log to display result.
-let homeworkCompleted = 3;
-let homeworkTotal = 5;
-let homeworkMessage = `${studentName} has completed ${homeworkCompleted} out of ${homeworkTotal} homework assignments.`;
-console.log(homeworkMessage);
-
-
-
-// 3. Control Structures and Logic // Check if student passed quiz
-
-// Step 1: Compare the student's quiz score to the minimum passing score.  
-// Step 2: If the quiz score is greater than or equal to the passing score:  
-//         - Print a success message showing the student passed.  
-// Step 3: Otherwise (if the score is less than the passing score):  
-//         - Print a message showing the student needs more practice.
-if (quizScore >= passingScore) {
-  console.log(studentName + " passed the quiz! ");
-} else {
-  console.log(studentName + " needs more practice before the next quiz.");
+for (let i = 0; i < students.length; i++) {
+  console.log("Quiz Score for " + students[i].name + ": " + students[i].quizScore);
 }
 
 
+// ===============================================
+// 2. Stringing Characters Together
+// ===============================================
+// Pseudocode:
+// Step 1: Assign completed and total homework for each student.
+// Step 2: Use a template literal to build a string.
+// Step 3: Save into homeworkMessage.
+// Step 4: Display with console.log.
 
-// 4. Building Arrays  // Array to track quiz scores over several weeks
+students[0].homeworkCompleted = 3;
+students[0].homeworkTotal = 5;
 
-// Step 1: Create an array called quizScores to store multiple quiz results.  
-// Step 2: Add a set of numeric quiz scores into the array.  
-// Step 3: Use console.log to display the entire array, showing all scores recorded so far.
-let quizScores = [85, 90, 78, 88]; 
+students[1].homeworkCompleted = 4;
+students[1].homeworkTotal = 5;
+
+students[2].homeworkCompleted = 2;
+students[2].homeworkTotal = 5;
+
+for (let i = 0; i < students.length; i++) {
+  let homeworkMessage = `${students[i].name} has completed ${students[i].homeworkCompleted} out of ${students[i].homeworkTotal} homework assignments.`;
+  console.log(homeworkMessage);
+}
+
+
+// ===============================================
+// 3. Control Structures and Logic
+// ===============================================
+// Pseudocode:
+// Step 1: Compare each student's score to passing score.
+// Step 2: Print pass or needs practice message.
+
+for (let i = 0; i < students.length; i++) {
+  if (students[i].quizScore >= passingScore) {
+    console.log(students[i].name + " passed the quiz!");
+  } else {
+    console.log(students[i].name + " needs more practice before the next quiz.");
+  }
+}
+
+
+// ===============================================
+// 4. Building Arrays
+// ===============================================
+// Pseudocode:
+// Step 1: Create an array quizScores to store results of all students.
+// Step 2: Use console.log to show the array.
+
+let quizScores = [];
+for (let i = 0; i < students.length; i++) {
+  quizScores.push(students[i].quizScore);
+}
 console.log("Scores so far: " + quizScores);
 
 
+// ===============================================
+// 5. Using Arrays - for loop & while loop
+// ===============================================
+// Pseudocode:
+// Step 1: Initialize totalScore = 0.
+// Step 2: Use for loop to sum scores.
+// Step 3: Divide to get average.
+// Step 4: Repeat with while loop.
 
-// 5. Using Arrays  // Loop to calculate average score
-
-// Step 1: Initialize a variable totalScore to 0 to hold the sum of all quiz scores.  
-// Step 2: Loop through each element in the quizScores array.  
-// Step 3: On each loop iteration, add the current quiz score to totalScore.  
-// Step 4: After the loop finishes, divide totalScore by the total number of quiz scores (array length).  
-// Step 5: Store the result in a variable called average.  
-// Step 6: Print the average score to the console.
+// --- Using for loop ---
 let totalScore = 0;
 for (let i = 0; i < quizScores.length; i++) {
-  totalScore += quizScores[i]; // adds each score in the array
+  totalScore += quizScores[i];
 }
-let average = totalScore / quizScores.length;
-console.log("Average Quiz Score: " + average);
+let averageForLoop = totalScore / quizScores.length;
+console.log("Average Quiz Score (for loop): " + averageForLoop);
+
+// --- Using while loop ---
+let j = 0;
+let totalWhile = 0;
+while (j < quizScores.length) {
+  totalWhile += quizScores[j];
+  j++;
+}
+let averageWhileLoop = totalWhile / quizScores.length;
+console.log("Average Quiz Score (while loop): " + averageWhileLoop);
 
 
+// ===============================================
+// 6. Creating and Using Objects
+// ===============================================
+// Pseudocode:
+// Step 1: Add more detail to each student object: name, attendance, homework count, quizzes.
+// Step 2: Add a method calculateAverage using a loop.
+// Step 3: Use dot notation to display info.
 
-// 6. Creating and Using objects   // Store all student info in one object
+let detailedStudents = [
+  {
+    name: "Robert",
+    attendance: ["Present", "Absent", "Present"],
+    homework: 3,
+    quizzes: [85, 90, 78],
+    calculateAverage: function() {
+      let sum = 0;
+      for (let i = 0; i < this.quizzes.length; i++) {
+        sum += this.quizzes[i];
+      }
+      return sum / this.quizzes.length;
+    }
+  },
+  {
+    name: "Aisha",
+    attendance: ["Present", "Present", "Present"],
+    homework: 4,
+    quizzes: [92, 88, 95],
+    calculateAverage: function() {
+      let sum = 0;
+      let i = 0;
+      while (i < this.quizzes.length) {
+        sum += this.quizzes[i];
+        i++;
+      }
+      return sum / this.quizzes.length;
+    }
+  },
+  {
+    name: "Shine",
+    attendance: ["Absent", "Present", "Absent"],
+    homework: 2,
+    quizzes: [60, 72, 68],
+    calculateAverage: function() {
+      let sum = 0;
+      for (let i = 0; i < this.quizzes.length; i++) {
+        sum += this.quizzes[i];
+      }
+      return sum / this.quizzes.length;
+    }
+  }
+];
 
-// Step 1: Create an object called student to group related data together.  
-// Step 2: Inside the object, store:  
-//         - name (string) to hold the student's name,  
-//         - attendance (array) to track attendance history,  
-//         - homework (number) to track how many assignments are completed,  
-//         - quizzes (array) to track quiz scores.  
-// Step 3: Use dot notation (student.name, student.homework) to access specific data from the object.  
-// Step 4: Print a message showing the student’s name along with the number of completed homework assignments.
-let student = {
-  name: "XYZ",
-  attendance: ["Present", "Absent", "Present"],
-  homework: 3,
-  quizzes: [85, 90, 78]
-};
-
-console.log(student.name + " has " + student.homework + " completed homework assignments.");
+for (let i = 0; i < detailedStudents.length; i++) {
+  let s = detailedStudents[i];
+  console.log(s.name + " has " + s.homework + " completed homework assignments.");
+  console.log(s.name + "'s average quiz score is: " + s.calculateAverage());
+}
